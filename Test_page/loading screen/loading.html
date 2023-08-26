@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading Screen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.min.js"></script>
+    <style>
+        /* Add any necessary styles for your animation container */
+        #animation-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <!-- This element is where the p5.js animation will be drawn -->
+    </div>
+    <script>
+        // Add your p5.js animation code here
+        var x = 5;
+        var y = 5;
+        var r = 25;
+        var sammX=2;
+        var sammY=2;
+
+        function setup() {
+            var canvas = createCanvas(windowWidth, windowHeight);
+            canvas.parent('animation-container');
+        }
+
+        function draw() {
+            background(255);
+            circle(x,y,r);
+
+            if (x>=width || x<=0 ){
+              sammX=-sammX
+            }
+            if (y>=height || y<=0){
+              sammY=-sammY
+            }
+            x=x+sammX;
+            y=y+sammY;
+
+        }
+
+        // Create the p5.js sketch within the global scope
+        new p5(function(p) {
+            p.setup = setup;
+            p.draw = draw;
+        });
+
+// Add an event listener to the window object to detect when the page has finished loading
+window.addEventListener('load', function() {
+    // Hide the loading animation
+    var animationContainer = document.getElementById('animation-container');
+    animationContainer.style.display = 'none';
+});
+
+
+    </script>
+</body>
+</html>
+
+
